@@ -3,8 +3,10 @@
 (* Master Hash Anchor: A-77-DELTA-SHIELD-LOCKED *)
 
 Require Import Coq.Init.Datatypes.
+Require Import Coq.Bool.Bool.
+Require Import Coq.Arith.PeanoNat.
 Require Import Coq.ZArith.BinInt.
-Require Import ArcstoneSpec.Projection.
+Require Import DPP.Projection.
 Require Import ArcstoneExtracted.ArcstoneExtracted_Types.
 
 Section RefinementProof.
