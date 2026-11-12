@@ -15,7 +15,9 @@ An external, content-addressed verification airlock decoupling upstream bare-met
 - Poset Dominance Lattice: POSIX 40 > POSIX 32 > POSIX 30 > POSIX 12 > POSIX 10 > POSIX 0
 
 ## Core Components
-- /PINS.lock: Cryptographic Git commit SHAs and Zenodo DOIs of pinned upstream repositories.
+- /AGENTS.md: Operational precedence lattice, zero-upstream-mutation constraints, and retrieval directives.
+- /PINS.lock: Cryptographic Git commit SHAs (`d8d8d3870dd8b9f449b445645ec73ca5d0f02e60`), tree SHA-256 (`fcd08cc86d9802f64442ab7162abcf23678900fda692a2427902cbaf05abd3da`), and Zenodo DOIs of pinned upstream repositories.
+- /docs/attestations/REFINEMENT-AUDIT-2026-V1.json: Canonical machine-verifiable CI proof receipt (`REFINEMENT-PROOF-CHAIN-CLOSED`, `admitted_axioms: 0`).
 - /extract/run_charon.sh: Non-invasive extraction of Low-Level Borrow Calculus (LLBC) from rustc MIR.
 - /scripts/run_aeneas.sh: Functional Coq 8.18.0 translation of LLBC.
 - /proofs/Refinement.v: Machine-checked forward safety simulation proof (Print Assumptions == ∅).
