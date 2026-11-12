@@ -1,18 +1,21 @@
 # arcstone-refinement-harness
 
+[![Mechanized Refinement Verification (Coq 8.18.0 <-> Rust)](https://github.com/trencinodin-stack/arcstone-refinement-harness/actions/workflows/refinement-ci.yml/badge.svg)](https://github.com/trencinodin-stack/arcstone-refinement-harness/actions/workflows/refinement-ci.yml)
+
 Mechanized Refinement & Simulation Harness for the Arcstone Computational Spine (ACS).
 
 ## Overview
+
 This repository implements the **Decoupled Refinement Airlock** (`ARC-MONO-2026-REFINEMENT-01`). It acts as an external, content-addressed verification harness that mechanizes the one-way forward safety simulation:
 
-$$\text{Rust\_Impl} \sqsubseteq \text{Coq\_Spec}$$
+$$\mathrm{Rust\_Impl} \sqsubseteq \mathrm{Coq\_Spec}$$
 
-The upstream sovereign core (`arcstone-continuity-core` / `domain-projection-spec`) remains strictly read-only and frozen ($C_{\text{ops}} = 0$, $M_{\text{alloc}} = 0$, $S_{\max} \le 4096\text{ B}$, $\tau_{\text{override}} \le 11.99\text{ ms}$). All formal extraction and translation maintenance drag ($C_{\text{ops}} > 0$) is absorbed downstream inside this harness.
+The upstream sovereign core (`arcstone-continuity-core` / `domain-projection-spec`) remains strictly read-only and frozen ($C_{\mathrm{ops}} = 0$, $M_{\mathrm{alloc}} = 0$, $S_{\max} \le 4096\text{ B}$, $\tau_{\mathrm{override}} \le 11.99\text{ ms}$). All formal extraction and translation maintenance drag ($C_{\mathrm{ops}} > 0$) is absorbed downstream inside this harness.
 
 ## Architecture & Pipeline
 1. **Extraction:** `Charon` extracts Low-Level Borrow Calculus (LLBC) directly from `rustc` MIR without modifying upstream source code.
 2. **Translation:** `Aeneas` compiles LLBC into pure functional definitions in Coq 8.18.0.
-3. **Simulation Proofs:** Machine-checked proofs in Coq verify that concrete Rust evaluation guards imply abstract reachability theorems with zero admitted axioms (`Print Assumptions == \emptyset`).
+3. **Simulation Proofs:** Machine-checked proofs in Coq verify that concrete Rust evaluation guards imply abstract reachability theorems with zero admitted axioms (`Print Assumptions == ∅`).
 4. **Hermetic CI:** Verification runs inside a network-isolated container (`--network none`, `--cap-drop ALL`, read-only mounts).
 
 ## Local Quickstart
