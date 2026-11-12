@@ -3,7 +3,7 @@
 
 [upstream.domain-projection-spec]
 repository = "https://github.com/trencinodin-stack/domain-projection-spec"
-commit_sha = "b06da20a7b4588e36780c65538eec4c414603957"
+commit_sha = "d8d8d3870dd8b9f449b445645ec73ca5d0f02e60"
 zenodo_doi = "10.5281/zenodo.24041851"
 tree_sha256 = "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
 
