@@ -1,0 +1,32 @@
+cff-version: 1.2.0
+message: "If you cite or audit this formal refinement harness, please cite it using these metadata."
+title: "arcstone-refinement-harness: Decoupled Refinement Airlock and Mechanized Simulation Proofs (Coq 8.18.0 <-> Rust)"
+version: 0.1.0
+date-released: "2026-11-11"
+repository-code: "https://github.com/trencinodin-stack/arcstone-refinement-harness"
+url: "https://paradigm.admissibilityscience.com"
+license: MIT
+authors:
+  - family-names: Tuohy
+    given-names: Jesse
+    affiliation: "Arcstone Adaptive Science Systems, Inc."
+identifiers:
+  - type: doi
+    value: "10.5281/zenodo.24041851"
+    description: "Theoretical Foundation Monograph (Domain Projection Paradigm)"
+  - type: doi
+    value: "10.5281/zenodo.24093739"
+    description: "Governing Canonical Capstone Specification (ARC-CAPSTONE-2026-SYNTH-01-REV19)"
+preferred-citation:
+  type: report
+  authors:
+    - family-names: Tuohy
+      given-names: Jesse
+      affiliation: "Arcstone Adaptive Science Systems, Inc."
+  title: "The Decoupled Refinement Airlock: Preserving Zero Operational Drag (C_ops = 0) in High-Assurance Systems via Downstream Mechanized Simulation"
+  number: "ARC-MONO-2026-REFINEMENT-01"
+  institution: "Arcstone Adaptive Science Systems, Inc."
+  year: 2026
+  month: 11
+  doi: "10.5281/zenodo.24041851"
+  url: "https://paradigm.admissibilityscience.com"
