@@ -32,8 +32,36 @@ The upstream sovereign core (`arcstone-continuity-core` / `domain-projection-spe
 # Clone the frozen upstream specification pinned by PINS.lock
 mkdir -p upstream
 rm -rf upstream/domain-projection-spec
-git clone [https://github.com/trencinodin-stack/domain-projection-spec.git](https://github.com/trencinodin-stack/domain-projection-spec.git) upstream/domain-projection-spec
+git clone https://github.com/trencinodin-stack/domain-projection-spec.git upstream/domain-projection-spec
 git -C upstream/domain-projection-spec checkout --detach b06da20a7b4588e36780c65538eec4c414603957
 
 # Verify cryptographic provenance and lockfile hashes
 ./scripts/verify_provenance.sh PINS.lock
+```
+### 2. Local Extraction & Compilation
+
+```bash
+# Extract LLBC from upstream Rust MIR
+./extract/run_charon.sh
+
+# Translate LLBC to Coq functional terms
+./scripts/run_aeneas.sh
+
+# Build and verify Coq simulation proofs (Print Assumptions == ∅)
+./scripts/verify_coq.sh
+
+```
+
+### 3. Docker Run (Hermetic)
+
+```bash
+docker build -t arcstone/refinement-harness:local .
+docker run --rm --network none --cap-drop ALL --read-only --tmpfs /tmp:rw arcstone/refinement-harness:local
+
+```
+
+## Non-Leakage & Governance Perimeters
+
+- **Zero-Upstream-Modification:** Upstream files in `upstream/` are strictly read-only (`chmod -R a-w upstream/`).
+- **One-Way Simulation:** Proves safety containment (every Rust admit satisfies Coq reachability), bypassing brittle bidirectional equivalence.
+- **Cryptographic Attestation:** Automated CI proof receipts are archived under `docs/attestations/REFINEMENT-AUDIT-2026-V1.json`.
