@@ -1,0 +1,21 @@
+# Arcstone Refinement Harness Cryptographic Upstream Pins
+# Master Anchor: A-77-DELTA-SHIELD-LOCKED
+
+[upstream.domain-projection-spec]
+repository = "https://github.com/trencinodin-stack/domain-projection-spec"
+commit_sha = "b06da20a7b4588e36780c65538eec4c414603957"
+zenodo_doi = "10.5281/zenodo.24041851"
+tree_sha256 = "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+
+[upstream.arcstone-continuity-core]
+repository = "https://github.com/trencinodin-stack/arcstone-continuity-core"
+tag = "v1.3.1-exec"
+commit_sha = "9cf311ba03422ee5be92a3bb9fa4c7b640822188"
+zenodo_doi = "10.5281/zenodo.22966979"
+tree_sha256 = "c04d16859eef7d5f0d3a77103ec68779c13b19280b1e428cf168925501869e46"
+
+[toolchain.pinned]
+coq_version = "8.18.0"
+rust_nightly = "nightly-2024-05-01"
+charon_rev = "v0.1.0"
+aeneas_rev = "v0.1.0"

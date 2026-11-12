@@ -1,0 +1,34 @@
+name: Mechanized Refinement Verification (Coq 8.18.0 <-> Rust)
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  schedule:
+    - cron: '0 0 * * 1' # Weekly toolchain drift detection
+
+permissions:
+  contents: read
+
+jobs:
+  verify-refinement:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout Refinement Harness
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          persist-credentials: false
+
+      - name: Cryptographic Provenance & Immutability Audit
+        run: |
+          chmod -R a-w upstream/ || true
+          ./scripts/verify_provenance.sh PINS.lock
+
+      - name: Setup Coq 8.18.0
+        uses: coq-community/docker-coq-action@v1
+        with:
+          coq_version: '8.18.0'
+          custom_script: |
+            ./scripts/verify_coq.sh
