@@ -1,0 +1,26 @@
+# arcstone-refinement-harness
+> Canonical Mechanized Refinement & Simulation Harness for the Arcstone Computational Spine (ACS)
+> Master Anchor: A-77-DELTA-SHIELD-LOCKED
+> Document Ref: ARC-MONO-2026-REFINEMENT-01
+> Upstream Anchor: Zenodo DOI 10.5281/zenodo.24041851 | 10.5281/zenodo.24119501 | 10.5281/zenodo.24093739
+
+## Project Summary
+An external, content-addressed verification airlock decoupling upstream bare-metal execution (C_ops = 0) from downstream mechanized proof maintenance (C_ops > 0). Proves one-way forward safety simulation (Rust_Impl ⊑ Coq_Spec) without modifying frozen upstream #[no_std] Rust kernels.
+
+## Core Invariants
+- Upstream Drag: C_ops = 0 (Frozen, read-only upstream)
+- Memory: M_alloc = 0, S_max <= 4096 Bytes
+- Hardware Watchdog: tau_eval <= 10.00 ms, tau_override <= 11.99 ms (NMI Circuit Breaker)
+- Continuous Robust Reachability: Rational witness gamma in Q (ADR-009 Bellman-Gronwall residual)
+- Poset Dominance Lattice: POSIX 40 > POSIX 32 > POSIX 30 > POSIX 12 > POSIX 10 > POSIX 0
+
+## Core Components
+- /PINS.lock: Cryptographic Git commit SHAs and Zenodo DOIs of pinned upstream repositories.
+- /extract/run_charon.sh: Non-invasive extraction of Low-Level Borrow Calculus (LLBC) from rustc MIR.
+- /scripts/run_aeneas.sh: Functional Coq 8.18.0 translation of LLBC.
+- /proofs/Refinement.v: Machine-checked forward safety simulation proof (Print Assumptions == ∅).
+- /upstream/domain-projection-spec/: Pinned Phase 8 abstract reachability specification.
+
+## Canonical Web & Edge Roots
+- Master Edge Root: https://paradigm.admissibilityscience.com
+- Public Ingress Root: https://admissibilityscience.com
