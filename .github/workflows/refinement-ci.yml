@@ -23,12 +23,13 @@ jobs:
 
       - name: Cryptographic Provenance & Immutability Audit
         run: |
+          chmod +x scripts/*.sh extract/*.sh || true
           chmod -R a-w upstream/ || true
-          ./scripts/verify_provenance.sh PINS.lock
+          bash scripts/verify_provenance.sh PINS.lock
 
-      - name: Setup Coq 8.18.0
+      - name: Setup Coq 8.18.0 & Verify Refinement
         uses: coq-community/docker-coq-action@v1
         with:
           coq_version: '8.18.0'
           custom_script: |
-            ./scripts/verify_coq.sh
+            bash scripts/verify_coq.sh
