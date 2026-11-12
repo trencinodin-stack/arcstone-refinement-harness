@@ -16,42 +16,24 @@ The upstream sovereign core (`arcstone-continuity-core` / `domain-projection-spe
 1. **Extraction:** `Charon` extracts Low-Level Borrow Calculus (LLBC) directly from `rustc` MIR without modifying upstream source code.
 2. **Translation:** `Aeneas` compiles LLBC into pure functional definitions in Coq 8.18.0.
 3. **Simulation Proofs:** Machine-checked proofs in Coq verify that concrete Rust evaluation guards imply abstract reachability theorems with zero admitted axioms (`Print Assumptions == ∅`).
-4. **Hermetic CI:** Verification runs inside a network-isolated container (`--network none`, `--cap-drop ALL`, read-only mounts).
+4. **Hermetic CI & Attestation:** Verification runs inside a network-isolated container (`--network none`, `--cap-drop ALL`, read-only mounts) and emits a cryptographic proof receipt (`docs/attestations/REFINEMENT-AUDIT-2026-V1.json`).
 
 ## Local Quickstart
 
 ### Prerequisites
 - Docker (recommended for hermetic execution) OR:
-  - Coq 8.18.0
-  - Stable & Nightly Rust (pinned toolchain for Charon)
+  - Coq 8.18.0 (`coqc` and `coqchk`)
+  - Stable & Nightly Rust (`nightly-2024-05-01` pinned in `PINS.lock`)
   - Charon (`charon-driver`)
   - Aeneas compiler
 
 ### 1. Verification Setup
 ```bash
-# Clone submodules and verify cryptographic provenance
-git submodule update --init --recursive
+# Clone the frozen upstream specification pinned by PINS.lock
+mkdir -p upstream
+rm -rf upstream/domain-projection-spec
+git clone [https://github.com/trencinodin-stack/domain-projection-spec.git](https://github.com/trencinodin-stack/domain-projection-spec.git) upstream/domain-projection-spec
+git -C upstream/domain-projection-spec checkout --detach b06da20a7b4588e36780c65538eec4c414603957
+
+# Verify cryptographic provenance and lockfile hashes
 ./scripts/verify_provenance.sh PINS.lock
-```
-
-### 2. Local Extraction & Compilation
-```bash
-# Extract LLBC from upstream Rust MIR
-./extract/run_charon.sh
-
-# Translate LLBC to Coq functional terms
-./scripts/run_aeneas.sh
-
-# Build Coq simulation proofs
-./scripts/verify_coq.sh
-```
-
-### 3. Docker Run (Hermetic)
-```bash
-docker build -t arcstone/refinement-harness:local .
-docker run --rm --network none --read-only arcstone/refinement-harness:local
-```
-
-## Non-Leakage & Governance Perimeters
-- **Zero-Upstream-Modification:** Upstream files in `upstream/` are strictly read-only (`chmod -R a-w upstream/`).
-- **One-Way Simulation:** Proves safety containment (every Rust admit satisfies Coq reachability), bypassing brittle bidirectional equivalence.
