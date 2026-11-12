@@ -7,7 +7,6 @@ echo " Obligation: Rust_Impl <= Coq_Spec (Forward Safety)"
 echo " Master Hash Anchor: A-77-DELTA-SHIELD-LOCKED"
 echo "=========================================================="
 
-# Check for coqc
 if ! command -v coqc &> /dev/null; then
   echo "[-] ERROR: coqc (Coq 8.18.0) is required."
   exit 1
@@ -22,10 +21,10 @@ if [ ! -d "${UPSTREAM_DIR}/proofs" ]; then
 fi
 
 echo "[2/4] Compiling authoritative upstream proofs under logical root 'DPP'..."
-# 1. Compile Invariants.v first so DPP.Invariants is available
+# Step A: Compile Invariants.v first so DPP.Invariants.vo is generated
 coqc -Q "${UPSTREAM_DIR}/proofs" DPP "${UPSTREAM_DIR}/proofs/Invariants.v"
 
-# 2. Compile Projection.v with DPP mapping
+# Step B: Compile Projection.v with DPP mapping
 coqc -Q "${UPSTREAM_DIR}/proofs" DPP "${UPSTREAM_DIR}/proofs/Projection.v"
 
 echo "[3/4] Checking extracted definitions..."
