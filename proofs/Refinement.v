@@ -9,8 +9,8 @@ Require Import DPP.Invariants.
 Require Import DPP.Projection.
 Require Import ArcstoneExtracted.ArcstoneExtracted_Types.
 
-Import DPP.Invariants.
-Import DPP.Projection.
+Import Invariants.
+Import Projection.
 
 Section RefinementProof.
 
