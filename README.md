@@ -33,7 +33,7 @@ The upstream sovereign core (`arcstone-continuity-core` / `domain-projection-spe
 mkdir -p upstream
 rm -rf upstream/domain-projection-spec
 git clone https://github.com/trencinodin-stack/domain-projection-spec.git upstream/domain-projection-spec
-git -C upstream/domain-projection-spec checkout --detach b06da20a7b4588e36780c65538eec4c414603957
+git -C upstream/domain-projection-spec checkout --detach d8d8d3870dd8b9f449b445645ec73ca5d0f02e60
 
 # Verify cryptographic provenance and lockfile hashes
 ./scripts/verify_provenance.sh PINS.lock
