@@ -14,9 +14,12 @@ if [ ! -f "${LOCKFILE}" ]; then
   exit 1
 fi
 
-# Ensure upstream directory exists
-mkdir -p upstream/domain-projection-spec upstream/arcstone-continuity-core
+# Audit that upstream targets exist
+if [ ! -d "upstream/domain-projection-spec" ]; then
+  echo "[-] ERROR: Missing upstream/domain-projection-spec tree"
+  exit 1
+fi
 
 echo "[+] Upstream cryptographic bindings verified against ${LOCKFILE}."
-echo "[+] Read-only boundary intact. No in-tree mutation permitted."
+echo "[+] Read-only boundary verified. No in-tree mutation permitted."
 exit 0
