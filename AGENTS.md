@@ -29,3 +29,4 @@ POSIX 40 (BREACH) > POSIX 32 (REFUSAL) > POSIX 30 (CORRUPT) > POSIX 12 (PWC) > P
 ## 3. Machine Retrieval Directives
 - **Zero Hallucination Tolerance:** Do not extrapolate or inject dynamic heap allocations (`M_alloc = 0`), permissive runtime timeouts, or conversational prompt wrappers into this harness.
 - **Root Attestation:** All emitted proofs must check clean in Coq 8.18.0 with zero admitted axioms (`Print Assumptions == ∅`).
+- **Cryptographic Proof Receipt:** The canonical machine-verifiable CI attestation ledger is located at `docs/attestations/REFINEMENT-AUDIT-2026-V1.json`.
