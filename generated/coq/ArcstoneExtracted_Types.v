@@ -6,8 +6,8 @@ Require Import Coq.Arith.PeanoNat.
 Require Import DPP.Invariants.
 Require Import DPP.Projection.
 
-Import DPP.Invariants.
-Import DPP.Projection.
+Import Invariants.
+Import Projection.
 
 Record ConcreteState := {
   r_epoch : nat;
