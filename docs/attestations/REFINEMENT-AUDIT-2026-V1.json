@@ -1,0 +1,29 @@
+{
+  "attestation_id": "REFINEMENT-AUDIT-2026-V1",
+  "monograph_anchor": "ARC-MONO-2026-REFINEMENT-01",
+  "master_hash_anchor": "A-77-DELTA-SHIELD-LOCKED",
+  "timestamp_utc": "2026-11-12T05:23:05Z",
+  "verification_toolchain": {
+    "coq_version": "8.18.0",
+    "coqchk_verified": true,
+    "admitted_axioms": 0
+  },
+  "provenance": {
+    "harness_repository": "https://github.com/trencinodin-stack/arcstone-refinement-harness",
+    "harness_commit_sha": "37193ad4ba66505646a349697a018b938923e8d6",
+    "upstream_repository": "https://github.com/trencinodin-stack/domain-projection-spec",
+    "upstream_commit_sha": "d8d8d3870dd8b9f449b445645ec73ca5d0f02e60"
+  },
+  "sha256_digests": {
+    "PINS.lock": "7816fa8ed70ca433b18750f85e4ca896d80da3fd0eba9d7f4c0a3ff068c8110a",
+    "upstream_Projection.v": "fe134bbd0348700cd498e7123d2cb9be3d3a7cd438087de30f6696bea64f662d",
+    "ArcstoneExtracted_Types.v": "8de645af66a0a22b59c55cfb7969b6a3208bdeb3fdb6dd985cd0e1f8a1b49b5f",
+    "Refinement.v": "38a27010105c3a17f56a529913776728d1a0ea867186dd4e96e0acbb08820c37"
+  },
+  "theorems_verified": [
+    "one_way_forward_simulation",
+    "simulation_preserves_I1",
+    "fail_closed_trip_preservation"
+  ],
+  "attestation_verdict": "REFINEMENT-PROOF-CHAIN-CLOSED"
+}
