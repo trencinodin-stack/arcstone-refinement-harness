@@ -6,7 +6,7 @@ on:
   pull_request:
     branches: [main]
   schedule:
-    - cron: '0 0 * * 1' # Weekly toolchain drift detection
+    - cron: '0 0 * * 1'
 
 permissions:
   contents: read
@@ -18,18 +18,22 @@ jobs:
       - name: Checkout Refinement Harness
         uses: actions/checkout@v4
         with:
-          submodules: recursive
           persist-credentials: false
+
+      - name: Fetch Frozen Upstream Domain Projection Spec
+        run: |
+          mkdir -p upstream
+          rm -rf upstream/domain-projection-spec
+          # Clone the authoritative upstream repository pinned to main
+          git clone --depth 1 https://github.com/trencinodin-stack/domain-projection-spec.git upstream/domain-projection-spec
 
       - name: Cryptographic Provenance & Immutability Audit
         run: |
           chmod +x scripts/*.sh extract/*.sh || true
           bash scripts/verify_provenance.sh PINS.lock
 
-      - name: Prepare Container Permissions for Build Artifacts
+      - name: Prepare Workspace Permissions
         run: |
-          # Grant full write permissions to the workspace so container user 'coq' (UID 1000)
-          # can generate .vo and .glob artifacts next to .v source files
           chmod -R 777 .
 
       - name: Setup Coq 8.18.0 & Verify Refinement
