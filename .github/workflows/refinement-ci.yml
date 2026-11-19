@@ -95,3 +95,20 @@ jobs:
           name: refinement-proof-receipt-v1
           path: docs/attestations/REFINEMENT-AUDIT-2026-V1.json
           retention-days: 90
+
+  lint-machinefirst:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Validate MACHINEFIRST.md v0.1.1 Contract
+        run: |
+          python3 validate_machinefirst.py MACHINEFIRST.md --strict
