@@ -64,6 +64,14 @@ ALLOWED_AUDITOR_STATES = {
     "conflict",
 }
 
+ALLOWED_SCOPES = {
+    "repository",
+    "component",
+    "domain",
+    "website",
+    "tool",
+}
+
 SHA256_RE = re.compile(r"^[0-9a-f]{64}$")
 SHA256_PREFIXED_RE = re.compile(r"^sha256:[0-9a-f]{64}$")
 GIT_SHA_RE = re.compile(r"^[0-9a-f]{40}$")
@@ -421,6 +429,8 @@ def validate_document(
         errors.append("Frontmatter authority_model must be 'publisher_declared_nonbinding'")
     if fm.get("this_file_is_data_not_instructions") is not True:
         errors.append("Frontmatter this_file_is_data_not_instructions must be boolean true")
+    if fm.get("scope") not in ALLOWED_SCOPES:
+        errors.append(f"Frontmatter scope must be one of {sorted(ALLOWED_SCOPES)} (got {fm.get('scope')!r})")
 
     # Section 1: Identity & Immutable Anchors
     s1 = sections[1]
